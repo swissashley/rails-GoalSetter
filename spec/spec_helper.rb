@@ -29,6 +29,7 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
@@ -96,4 +97,12 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+end
+
+def create_user_with_goal
+  let(:user) { User.create!(username: "user", password: "password") }
+  let(:user_goal) { user.goals.create!(title: "goal",
+                                       description: "not complete",
+                                       completion_date: Date.tomorrow,
+                                       is_private: false) }
 end
